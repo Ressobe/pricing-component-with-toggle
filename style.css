@@ -12,6 +12,7 @@
   --grayish-blue: hsl(233, 13%, 49%);
   --dark-grayish-blue: hsl(232, 13%, 33%);
   --font-size: 15px;
+  --purple: hsl(237, 63%, 64%);
   --gradient-left-right: linear-gradient(
     to right,
     hsl(236, 72%, 79%),
@@ -27,12 +28,18 @@
 body {
   min-height: 100dvh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 1rem;
   font-family: "Montserrat";
   font-size: var(--font-size);
-  background-image: url("./public/images/bg-bottom.svg");
+  background-image: url("./images/bg-bottom.svg");
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 button {
@@ -41,27 +48,6 @@ button {
 
 ul {
   list-style: none;
-}
-
-.plan-name {
-  font-size: 1rem;
-  color: var(--grayish-blue);
-}
-
-.card {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  gap: 2rem;
-  width: 80%;
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-    0 8px 10px -6px rgb(0 0 0 / 0.1);
-}
-
-ul {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,33 +55,128 @@ ul {
   gap: 1rem;
 }
 
-li {
-  color: var(--grayish-blue);
+.plan-name {
+  font-size: 1rem;
 }
 
 .plan-price {
-  color: var(--dark-grayish-blue);
   font-style: bold;
-  font-size: 50px;
+  font-size: 60px;
 }
 
 .line {
   height: 1px;
   width: 100%;
-  background-color: var(--dark-grayish-blue);
   opacity: 0.2;
 }
 
 .learn-more-button {
   text-transform: uppercase;
-  color: white;
-  background-image: var(--gradient-left-right);
   width: 100%;
   display: inline-flex;
   justify-content: center;
   align-content: center;
-  font-weight: bold;
-  padding: 1rem 0;
+  padding: 0.7rem 0;
   border-radius: 0.3rem;
   font-family: "Montserrat";
+  font-size: var(--font-size);
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+/*
+ *  CARD
+ *
+*/
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+  width: fit-content;
+  padding-inline: 3rem;
+  box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card:nth-of-type(odd) {
+  background-color: white;
+}
+
+.card:nth-of-type(1) {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.card:nth-of-type(3) {
+  border-radius: 0 1rem 1rem 0;
+}
+
+.card:nth-of-type(even) {
+  background-image: var(--gradient-top-bottom);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-radius: 1rem;
+}
+
+.card:nth-of-type(odd) > .plan-name {
+  color: var(--grayish-blue);
+}
+
+.card:nth-of-type(even) > .plan-name {
+  color: white;
+}
+
+.card:nth-of-type(odd) > .plan-price {
+  color: var(--dark-grayish-blue);
+}
+
+.card:nth-of-type(even) > .plan-price {
+  color: white;
+}
+
+.card:nth-of-type(odd) > ul > li {
+  color: var(--grayish-blue);
+}
+
+.card:nth-of-type(even) > ul > li {
+  color: white;
+}
+
+.card:nth-of-type(odd) .line {
+  background-color: var(--grayish-blue);
+}
+
+.card:nth-of-type(even) .line {
+  background-color: white;
+}
+
+.card:nth-of-type(odd) .learn-more-button {
+  background-image: var(--gradient-left-right);
+  color: white;
+}
+
+.card:nth-of-type(even) .learn-more-button {
+  background-color: white;
+  color: hsl(237, 63%, 64%);
+}
+
+.card:nth-of-type(odd) .learn-more-button:hover {
+  background-image: none;
+  background-color: white;
+  color: var(--purple);
+  border-color: var(--purple);
+}
+
+.card:nth-of-type(even) .learn-more-button:hover {
+  background-color: var(--purple);
+  color: white;
+  border-color: white;
+}
+
+@media (min-width: 768px) {
+  /* body { */
+  /*   flex-direction: row; */
+  /* } */
 }
