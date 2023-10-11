@@ -22,9 +22,20 @@
     <title>Frontend Mentor | Pricing component with toggle</title>
   </head>
   <body>
-    <!-- <h1>Our Pricing</h1> -->
-    <!-- <div>Annually Monthly</div> -->
-
+    <div class="bg-top">
+      <img src="./images/bg-top.svg" alt="bg-top" />
+    </div>
+    <header>
+      <h1 class="pricing">Our Pricing</h1>
+      <div class="plan-length">
+        <label>Annually</label>
+        <div>
+          <input type="checkbox" id="check" class="toggle" />
+          <label for="check"></label>
+        </div>
+        <label>Monthly</label>
+      </div>
+    </header>
     <main>
       <div class="card">
         <h1 class="plan-name">Basic</h1>
@@ -62,7 +73,7 @@
 
       <div class="card">
         <h1 class="plan-name">Master</h1>
-        <h1 class="plan-price">&dollar;399.99</h1>
+        <h1 class="plan-price">399.99</h1>
 
         <ul>
           <div class="line"></div>
@@ -77,5 +88,26 @@
         <button class="learn-more-button">Learn More</button>
       </div>
     </main>
+    <div class="bg-bottom">
+      <img src="./images/bg-bottom.svg" alt="bg-top" />
+    </div>
+    <script type="text/javascript">
+      const toggleInput = document.getElementById("check");
+      const pricesHeaders = document.querySelectorAll(".plan-price");
+
+      toggleInput.checked = false;
+
+      toggleInput.addEventListener("change", () => {
+        let prices;
+        if (!toggleInput.checked) {
+          prices = ["199.99", "249.99", "399.99"];
+        } else {
+          prices = ["19.99", "24.99", "39.99"];
+        }
+        pricesHeaders.forEach((item, idx) => {
+          item.innerHTML = "&dollar;" + prices[idx];
+        });
+      });
+    </script>
   </body>
 </html>
