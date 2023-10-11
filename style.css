@@ -28,18 +28,36 @@
 body {
   min-height: 100dvh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   font-family: "Montserrat";
   font-size: var(--font-size);
-  background-image: url("./images/bg-bottom.svg");
 }
 
 main {
   display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+.bg-top {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -10;
+}
+
+.bg-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -10;
 }
 
 button {
@@ -53,6 +71,20 @@ ul {
   align-items: center;
   width: 100%;
   gap: 1rem;
+}
+
+.pricing {
+  color: var(--grayish-blue);
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.plan-length {
+  color: var(--light-grayish-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
 
 .plan-name {
@@ -99,25 +131,15 @@ ul {
   padding-inline: 3rem;
   box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
 }
 
 .card:nth-of-type(odd) {
   background-color: white;
 }
 
-.card:nth-of-type(1) {
-  border-radius: 1rem 0 0 1rem;
-}
-
-.card:nth-of-type(3) {
-  border-radius: 0 1rem 1rem 0;
-}
-
 .card:nth-of-type(even) {
   background-image: var(--gradient-top-bottom);
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-  border-radius: 1rem;
 }
 
 .card:nth-of-type(odd) > .plan-name {
@@ -175,8 +197,76 @@ ul {
   border-color: white;
 }
 
-@media (min-width: 768px) {
-  /* body { */
-  /*   flex-direction: row; */
-  /* } */
+@media (min-width: 1000px) {
+  main {
+    flex-direction: row;
+    gap: 0;
+  }
+  .card {
+    border-radius: 1rem;
+  }
+
+  .card:nth-of-type(even) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .card:nth-of-type(1) {
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  .card:nth-of-type(3) {
+    border-radius: 0 1rem 1rem 0;
+  }
+}
+
+input[type="checkbox"].toggle {
+  opacity: 0;
+  position: absolute;
+  left: -9000px;
+  top: -9000px;
+}
+
+input[type="checkbox"].toggle + label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="checkbox"].toggle + label::before {
+  content: "";
+  width: 3.5em;
+  height: 2em;
+  background-image: var(--gradient-left-right);
+  border-radius: 1em;
+  margin-right: 0;
+  transition: background-image 200ms ease-in-out;
+}
+
+input[type="checkbox"].toggle + label::after {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  content: "";
+  font-size: 0.5em;
+  height: 2em;
+  left: 0.5em;
+  width: 2em;
+  height: 2em;
+  background-color: white;
+  color: white;
+  border-radius: 1em;
+  transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+}
+
+input[type="checkbox"].toggle:checked + label::before {
+  background-color: white;
+}
+
+input[type="checkbox"].toggle:checked + label::after {
+  content: "";
+  transform: translateX(200%);
+  background-color: white;
 }
